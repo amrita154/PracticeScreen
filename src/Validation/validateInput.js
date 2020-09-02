@@ -1,10 +1,10 @@
-export default function validateInput({InputMail, InputPassword}) {
+export default function validateInput(inputMail, inputPassword) {
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  if (InputMail == '' || mailformat.test(InputMail) == false) {
+  if (inputMail == '' || mailformat.test(inputMail) == false) {
     alert('Please provide valid email');
-  } else if (InputPassword == '') {
+  } else if (inputPassword == '') {
     alert('Please provide valid password');
   } else {
-    alert('Welcome ' + InputMail);
+    alert('Welcome ' + inputMail);
   }
 }

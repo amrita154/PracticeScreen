@@ -8,7 +8,7 @@ import Styles from './style';
 import LinearGradient from 'react-native-linear-gradient';
 import Logo from '../../components/Logo/index.js';
 import validateInput from './../../Validation/validateInput';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 class Login extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Login extends React.Component {
       password: '',
     };
   }
-  
+
   render() {
     return (
       <View style={Styles.container}>
@@ -28,13 +28,13 @@ class Login extends React.Component {
           <ScreenHeader
             leftComponent={
               <TouchableOpacity
-              onPress={()=>this.props.navigation.navigate('Home')}>
-              <Logo
-                source={require('./../../assets/Logo.png')}
-                style={Styles.logoImage}></Logo>
-                </TouchableOpacity>
+                onPress={() => this.props.navigation.navigate('Home')}>
+                <Logo
+                  source={require('./../../assets/Logo.png')}
+                  style={Styles.logoImage}></Logo>
+              </TouchableOpacity>
             }
-            rightComponent={{text:"Menu"}}
+            rightComponent={{text: 'Menu'}}
           />
           <View style={Styles.screenBody}>
             <Title value="Sign In" style={Styles.title} />
@@ -60,17 +60,23 @@ class Login extends React.Component {
               value="Sign In"
               styleButton={Styles.signInButton}
               styleText={Styles.signInText}
-              onPress={() => validateInput(this.state)}></TouchableText>
+              onPress={() =>
+                validateInput(this.state.email, this.state.password)
+              }></TouchableText>
 
             <View style={Styles.otherOptions}>
               <TouchableText
                 value="Forgot your Password ?"
                 styleText={Styles.forgotPassword}
-                onPress={()=>this.props.navigation.navigate('ForgotPassword')}></TouchableText>
+                onPress={() =>
+                  this.props.navigation.navigate('ForgotPassword')
+                }></TouchableText>
               <TouchableText
                 value="Sign Up"
                 styleText={Styles.signUp}
-                onPress={()=>this.props.navigation.navigate('SignUp')}></TouchableText>
+                onPress={() =>
+                  this.props.navigation.navigate('SignUp')
+                }></TouchableText>
             </View>
           </View>
         </LinearGradient>
