@@ -1,10 +1,13 @@
 import React from 'react';
 import {Image} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
-Logo=({source,style})=>{
-    return(
-        <Image source={source} style={style} ></Image>
-    )
-}
+const Logo = ({source, style, onPress}) => {
+  return (
+    <TouchableOpacity onPress={onPress}>
+      <Image source={source} style={style}></Image>
+    </TouchableOpacity>
+  );
+};
 
 export default Logo;

@@ -34,7 +34,6 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
   },
   forgotPassword: {
-    justifyContent: 'flex-start',
     alignItems: 'flex-start',
     paddingLeft: 10,
     color: 'white',
@@ -42,7 +41,6 @@ const Styles = StyleSheet.create({
     marginTop: 10,
   },
   signUp: {
-    justifyContent: 'flex-end',
     paddingLeft: '33%',
     alignItems: 'flex-end',
     color: 'white',

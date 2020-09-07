@@ -1,13 +1,10 @@
 import React from 'react';
 import {Text, View, Button} from 'react-native';
+import styles from './style';
 
-SignUp = ({navigation}) => {
+const SignUp = ({navigation}) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-      }}>
+    <View style={styles.container}>
       <Title value="Sign Up"></Title>
       <Button title="Login" onPress={() => navigation.navigate('Login')} />
     </View>

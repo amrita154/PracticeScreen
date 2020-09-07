@@ -1,23 +1,13 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
+import styles from './style';
 
-Title = ({style,value}) => {
+const Title = ({style, value}) => {
   return (
-    <View
-      style={styles.container}>
-      <Text style={[styles.textStyle,style]}>{value}</Text>
+    <View style={styles.container}>
+      <Text style={[styles.textStyle, style]}>{value}</Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container:{
-    alignItems:'center'
-  },
-  textStyle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-  },
-});
 
 export default Title;
