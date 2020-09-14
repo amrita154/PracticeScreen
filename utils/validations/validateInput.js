@@ -1,7 +1,9 @@
+import navigateToScreen from '../navigation/navigateToScreen';
+
 function alertMessage(message) {
   alert(message);
 }
-export default function validateInput(inputMail, inputPassword) {
+export default function validateInput(inputMail, inputPassword, navigation) {
   var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (inputMail === '' || mailformat.test(inputMail) === false) {
     alertMessage('Please provide valid email');
@@ -16,6 +18,9 @@ export default function validateInput(inputMail, inputPassword) {
   } else if (!inputPassword.match(/[0-9]/g)) {
     alertMessage('Password should contain atleast one digit');
   } else {
-    alert('Welcome ' + inputMail);
+    navigateToScreen(navigation, 'Home', {
+      username: 'Welcome ' + inputMail,
+      disabled: true,
+    });
   }
 }

@@ -1,4 +1,4 @@
-function navigateToScreen(navigation, screenName) {
-  navigation.navigate(screenName);
+function navigateToScreen(navigation, screenName, parameters) {
+  navigation.navigate(screenName, parameters);
 }
 export default navigateToScreen;
