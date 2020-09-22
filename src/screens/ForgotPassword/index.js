@@ -5,7 +5,6 @@ import styles from './style';
 import navigateToScreen from '../../../utils/navigation/navigateToScreen';
 import LinearGradient from 'react-native-linear-gradient';
 import GradientColors from '../../components/Gradient/index';
-import {_ScrollView} from 'react-native';
 export default ForgotPassword = ({navigation}) => {
   return (
     <View style={styles.container}>

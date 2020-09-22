@@ -8,13 +8,11 @@ MovieInfoLists = ({list, style, id}) => {
         flexDirection: 'row',
         flexWrap: 'wrap',
       }}>
-      {list.map((item, i) => {
+      {list.map((item, index) => {
         return (
-          <Text
-            key={id == 0 ? item.id : id == 1 ? item.iso_3166_1 : item.iso_639_1}
-            style={style}>
+          <Text key={index} style={style}>
             {item.name}
-            {i < list.length - 1 ? '|' : ''}
+            {index < list.length - 1 ? '|' : ''}
           </Text>
         );
       })}

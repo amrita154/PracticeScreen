@@ -1,11 +1,15 @@
 import React from 'react';
-import {View} from 'react-native';
+import {View, ScrollView, TabBarIOS} from 'react-native';
 import Title from './../../components/Title/index';
 import styles from './style';
 import navigateToScreen from './../../../utils/navigation/navigateToScreen';
 import LinearGradient from 'react-native-linear-gradient';
 import GradientColors from '../../components/Gradient/index';
 import TouchableText from '../../components/TouchableText';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import SearchMovie from '../SearchMovie';
+import Login from '../login';
+import SignUp from '../SignUp';
 
 class Home extends React.Component {
   constructor(props) {
@@ -16,7 +20,7 @@ class Home extends React.Component {
       alert('Login first to search');
       navigateToScreen(this.props.navigation, 'Login');
     } else {
-      navigateToScreen(this.props.navigation, 'SearchMovie');
+      navigateToScreen(this.props.navigation, 'Movie');
     }
   }
   render() {

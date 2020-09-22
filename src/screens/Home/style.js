@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#be91b3',
     margin: 10,
+    height: 50,
   },
   buttonText: {
     fontSize: 25,
@@ -24,6 +25,7 @@ const styles = StyleSheet.create({
   },
   options: {
     flex: 1,
+    flexDirection: 'column',
     justifyContent: 'flex-start',
     margin: 10,
   },
