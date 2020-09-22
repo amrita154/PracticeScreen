@@ -1,11 +1,5 @@
 function getHeaderTitle(name) {
-  return name === 'Home'
-    ? 'Home'
-    : name === 'SearchMovie'
-    ? 'Search'
-    : name === 'MovieDetails'
-    ? 'Movie'
-    : '';
+  return name === 'Tabs' ? 'Home' : name;
 }
 
 export default getHeaderTitle;

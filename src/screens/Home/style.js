@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
   screenBody: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 100,
   },
   background: {
     flex: 1,

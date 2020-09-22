@@ -1,16 +1,13 @@
-import Home from './../../screens/Home';
 import React from 'react';
-import {Text} from 'react-native';
-import Login from './../../screens/login';
 import 'react-native-gesture-handler';
-import SignUp from './../../screens/SignUp';
-import SearchMovie from './../../screens/SearchMovie';
 import {createStackNavigator} from '@react-navigation/stack';
 import getHeaderTitle from '../Header/headerTitle';
 import styles from './style';
 import getHeaderLeft from '../Header/headerLeft';
 import getHeaderRight from '../Header/headerRight';
-import MovieStack from './MovieStack';
+import MovieList from '../../screens/MovieList';
+import MovieDetails from '../../screens/MovieDetails';
+import BottomTab from './BottomTab';
 
 const Stack = createStackNavigator();
 
@@ -21,16 +18,18 @@ const HomeStack = () => {
         headerTitle: getHeaderTitle(route.name),
         headerStyle: styles.headerStyle,
         headerTintColor: '#EBF2FA',
-        headerLeft: () => getHeaderLeft(navigation),
         headerRight: () => getHeaderRight(navigation),
-      })}>
+      })}
+      initialRouteName="BottomTab">
       <Stack.Screen
-        name="Home"
-        component={Home}
-        initialParams={{username: 'Login', disabled: false}}
+        name="BottomTab"
+        component={BottomTab}
+        options={({route, navigation}) => ({
+          headerLeft: () => getHeaderLeft(route, navigation),
+        })}
       />
-      <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
+      <Stack.Screen name="MovieList" component={MovieList} />
+      <Stack.Screen name="MovieDetails" component={MovieDetails} />
     </Stack.Navigator>
   );
 };

@@ -18,9 +18,7 @@ export default function validateInput(inputMail, inputPassword, navigation) {
   } else if (!inputPassword.match(/[0-9]/g)) {
     alertMessage('Password should contain atleast one digit');
   } else {
-    navigateToScreen(navigation, 'Home', {
-      username: 'Welcome ' + inputMail,
-      disabled: true,
-    });
+    return true;
   }
+  return false;
 }

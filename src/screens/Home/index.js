@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {getDerivedStateFromProps} from 'react';
 import {View, ScrollView, TabBarIOS} from 'react-native';
 import Title from './../../components/Title/index';
 import styles from './style';
@@ -10,53 +10,68 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SearchMovie from '../SearchMovie';
 import Login from '../login';
 import SignUp from '../SignUp';
-
+import MovieCatalogue from '../../components/Movie/MovieCatalogue';
+import AsyncStorage from '@react-native-community/async-storage';
 class Home extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      trendingMovies: [],
+      upcomingMovies: [],
+      isLoaded: false,
+      loginValue: this.props.route.params.username,
+    };
   }
-  onPressSearchButton(text) {
-    if (text === 'Login') {
-      alert('Login first to search');
-      navigateToScreen(this.props.navigation, 'Login');
-    } else {
-      navigateToScreen(this.props.navigation, 'Movie');
+  async fetchData() {
+    try {
+      let response = await fetch(
+        'https://api.themoviedb.org/3/trending/movie/week?api_key=91dc96e74447b2ebe1268430803b91d6',
+      );
+      let json = await response.json();
+      this.setState({
+        trendingMovies: json.results,
+      });
+      response = await fetch(
+        'https://api.themoviedb.org/3/movie/upcoming?api_key=91dc96e74447b2ebe1268430803b91d6',
+      );
+      json = await response.json();
+      this.setState({
+        upcomingMovies: json.results,
+      });
+    } catch (error) {
+      alert('Failed!!');
+      console.log(error);
     }
   }
+  componentDidMount() {
+    this.fetchData();
+    this.setState({
+      isLoaded: true,
+    });
+  }
+
   render() {
-    loginValue = this.props.route.params.username;
-    disabled = this.props.route.params.disabled;
     return (
       <View style={styles.container}>
         <LinearGradient colors={GradientColors()} style={styles.background}>
-          <View style={styles.screenBody}>
-            <Title value="Home"></Title>
-            <View style={styles.options}>
-              <TouchableText
-                value={loginValue}
-                disabled={disabled}
-                styleButton={styles.button}
-                styleText={styles.buttonText}
-                onPress={() =>
-                  navigateToScreen(this.props.navigation, 'Login')
-                }></TouchableText>
-
-              <TouchableText
-                value="Signup"
-                styleButton={styles.button}
-                styleText={styles.buttonText}
-                onPress={() =>
-                  navigateToScreen(this.props.navigation, 'SignUp')
-                }
+          <ScrollView style={styles.container}>
+            <View style={styles.screenBody}>
+              <MovieCatalogue
+                categoryValue="Trending Now"
+                iconName="fire"
+                isLoaded={this.state.isLoaded}
+                movieList={this.state.trendingMovies}
+                navigation={this.props.navigation}
               />
-              <TouchableText
-                value="Search Movie"
-                styleButton={styles.button}
-                styleText={styles.buttonText}
-                onPress={() => this.onPressSearchButton(loginValue)}
+              <MovieCatalogue
+                categoryValue="Upcoming"
+                iconName="hourglass"
+                isLoaded={this.state.isLoaded}
+                movieList={this.state.upcomingMovies}
+                navigation={this.props.navigation}
               />
             </View>
-          </View>
+          </ScrollView>
         </LinearGradient>
       </View>
     );

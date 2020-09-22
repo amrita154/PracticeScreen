@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {getDerivedStateFromProps, componentDidMount} from 'react';
 import {Text, View, Button} from 'react-native';
 import Input from './../../components/Input';
 import {FlatList, TouchableOpacity} from 'react-native-gesture-handler';
@@ -21,9 +21,9 @@ class SearchMovie extends React.Component {
       movies: [],
       searchedMovies: [],
       displaysearchedList: true,
+      loginValue: '',
     };
   }
-
   getMovies = async (data) => {
     newState = await getMovies(data);
     this.setState({
@@ -61,9 +61,7 @@ class SearchMovie extends React.Component {
             onChangeText={(data) => this.getMovies(data)}
             defaultValue={this.state.searchText}
             onFocus={() => this.onFocus()}></Input>
-          <Button
-            title="Search"
-            onPress={() => this.getSearchResult()}></Button>
+          <Button title="Search" onPress={this.getSearchResult}></Button>
 
           {this.state.movies.length > 0 ? (
             <FlatList
@@ -101,7 +99,7 @@ class SearchMovie extends React.Component {
               renderItem={({item}) => (
                 <SearchList
                   item={item}
-                  styles={{
+                  style={{
                     movieName: styles.movieName,
                     movieData: styles.movieData,
                     movieText: styles.movieText,

@@ -1,14 +1,16 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import HomeStack from './HomeStack';
-import ProfileStack from './ProfileStack';
-import MovieStack from './MovieStack';
 import styles from './style';
+import Home from '../../screens/Home';
+import SearchMovie from '../../screens/SearchMovie';
+
+import LogOut from '../../screens/LogOut';
+import {createCompatNavigatorFactory} from '@react-navigation/compat';
 
 const Tab = createBottomTabNavigator();
-const TabScreen = ({navigation}) => {
+
+const BottomTab = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -17,16 +19,13 @@ const TabScreen = ({navigation}) => {
         inactiveTintColor: 'black',
         labelStyle: styles.labelStyle,
         labelPosition: 'below-icon',
-      }}>
-      <Tab.Screen
-        name="Home"
-        component={HomeStack}
-        initialParams={{username: 'Login', disabled: false}}></Tab.Screen>
-      <Tab.Screen name="Movie" component={MovieStack}></Tab.Screen>
-
-      <Tab.Screen name="Profile" component={ProfileStack}></Tab.Screen>
+      }}
+      initialRouteName="Profile">
+      <Tab.Screen name="Home" component={Home}></Tab.Screen>
+      <Tab.Screen name="Movie" component={SearchMovie}></Tab.Screen>
+      <Tab.Screen name="Profile" component={LogOut}></Tab.Screen>
     </Tab.Navigator>
   );
 };
 
-export default TabScreen;
+export default BottomTab;

@@ -1,21 +1,21 @@
 import React from 'react';
 import 'react-native-gesture-handler';
-import TabScreen from './BottomTab';
+
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
+import LogOut from '../../screens/LogOut';
+import HomeStack from './HomeStack';
 import {NavigationContainer} from '@react-navigation/native';
-import ProfileStack from './ProfileStack';
-import MovieStack from './MovieStack';
+import {createCompatNavigatorFactory} from '@react-navigation/compat';
 
 const Drawer = createDrawerNavigator();
+
 const SideDrawer = () => {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={TabScreen} />
-        <Drawer.Screen name="Profile" component={ProfileStack} />
-        <Drawer.Screen name="Movie" component={MovieStack} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Drawer.Navigator initialRouteName="Home">
+      <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen name="Profile" component={LogOut} />
+    </Drawer.Navigator>
   );
 };
 export default SideDrawer;

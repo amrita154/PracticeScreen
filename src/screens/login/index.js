@@ -1,5 +1,6 @@
-import React from 'react';
-import {View, KeyboardAvoidingView, Platform} from 'react-native';
+import React, {componentDidMount} from 'react';
+import {View, KeyboardAvoidingView, Platform, Button} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import Title from './../../components/Title';
 import Input from './../../components/Input';
 import TouchableText from './../../components/TouchableText';
@@ -8,6 +9,7 @@ import validateInput from './../../../utils/validations/validateInput';
 import navigateToScreen from './../../../utils/navigation/navigateToScreen';
 import GradientColors from './../../components/Gradient';
 import LinearGradient from 'react-native-linear-gradient';
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -15,6 +17,15 @@ class Login extends React.Component {
       email: '',
       password: '',
     };
+  }
+
+  async signIn() {
+    canlogin = validateInput(this.state.email, this.state.password);
+    if (canlogin) {
+      await AsyncStorage.setItem('username', this.state.email);
+      alert('Logged In!!');
+      navigateToScreen(this.props.navigation, 'AppStack');
+    }
   }
 
   render() {
@@ -28,6 +39,7 @@ class Login extends React.Component {
             <Input
               value="Login"
               style={Styles.textInput}
+              defaultValue={this.state.email}
               onChangeText={(data) =>
                 this.setState({
                   email: data,
@@ -42,18 +54,13 @@ class Login extends React.Component {
                   password: data,
                 })
               }
+              defaultValue={this.state.password}
             />
             <TouchableText
               value="Sign In"
               styleButton={Styles.signInButton}
               styleText={Styles.signInText}
-              onPress={() =>
-                validateInput(
-                  this.state.email,
-                  this.state.password,
-                  this.props.navigation,
-                )
-              }></TouchableText>
+              onPress={() => this.signIn()}></TouchableText>
 
             <View style={Styles.otherOptions}>
               <TouchableText

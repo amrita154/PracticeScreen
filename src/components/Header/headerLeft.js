@@ -1,7 +1,8 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {BaseRouter} from '@react-navigation/native';
 
-function getHeaderLeft(navigation) {
+function getHeaderLeft(route, navigation) {
   return (
     <Icon
       name="menu"
