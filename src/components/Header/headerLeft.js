@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {BaseRouter} from '@react-navigation/native';
+import {DrawerActions} from '@react-navigation/native';
 
 function getHeaderLeft(route, navigation) {
   return (
@@ -8,7 +9,7 @@ function getHeaderLeft(route, navigation) {
       name="menu"
       color="white"
       size={40}
-      onPress={() => navigation.toggleDrawer()}
+      onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}
     />
   );
 }

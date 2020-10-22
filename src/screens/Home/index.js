@@ -19,7 +19,6 @@ class Home extends React.Component {
       trendingMovies: [],
       upcomingMovies: [],
       isLoaded: false,
-      loginValue: this.props.route.params.username,
     };
   }
   async fetchData() {
